@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+
 // HTTP Request method.
 typedef NS_ENUM(NSInteger, FYRequestMethod) {
     FYRequestMethodGET = 0,
@@ -23,6 +24,11 @@ typedef NS_ENUM(NSInteger,FYRequestSerializerType) {
     FYRequestSerializerTypeJSON,
 };
 
+
+@protocol AFMultipartFormData;
+
+typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
+
 /**
  the bulder of request，
  */
@@ -37,6 +43,6 @@ typedef NS_ENUM(NSInteger,FYRequestSerializerType) {
 @property (nonatomic, strong) NSMutableDictionary<NSString *,NSString *> *globalHeaders;
 
 // initializer
-- (NSURLRequest *)buildRequetWithHTTPMethod:(FYRequestMethod)method URLString:(NSString *)URLString requestSerializerType:(FYRequestSerializerType)serializerType parameters:(id)parameters headers:(NSDictionary *)headers;
+- (NSURLRequest *)buildRequetWithHTTPMethod:(FYRequestMethod)method URLString:(NSString *)URLString requestSerializerType:(FYRequestSerializerType)serializerType parameters:(id)parameters constructingBodyBlock:(AFConstructingBlock)blcok  headers:(NSDictionary *)headers;
 
 @end

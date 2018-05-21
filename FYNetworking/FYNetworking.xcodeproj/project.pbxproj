@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A875370120B2FBEA0002A468 /* FYNetworkAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = A875370020B2FBEA0002A468 /* FYNetworkAgent.m */; };
 		D4CABF7C20B2BFCC006DC66F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4CABF7B20B2BFCC006DC66F /* AppDelegate.m */; };
 		D4CABF7F20B2BFCC006DC66F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4CABF7E20B2BFCC006DC66F /* ViewController.m */; };
 		D4CABF8220B2BFCC006DC66F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4CABF8020B2BFCC006DC66F /* Main.storyboard */; };
@@ -35,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A87536FF20B2FBEA0002A468 /* FYNetworkAgent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYNetworkAgent.h; sourceTree = "<group>"; };
+		A875370020B2FBEA0002A468 /* FYNetworkAgent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYNetworkAgent.m; sourceTree = "<group>"; };
 		D4CABF7720B2BFCC006DC66F /* FYNetworking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FYNetworking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4CABF7A20B2BFCC006DC66F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D4CABF7B20B2BFCC006DC66F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -97,6 +100,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A87536FE20B2FBC90002A468 /* Agent */ = {
+			isa = PBXGroup;
+			children = (
+				A87536FF20B2FBEA0002A468 /* FYNetworkAgent.h */,
+				A875370020B2FBEA0002A468 /* FYNetworkAgent.m */,
+			);
+			path = Agent;
+			sourceTree = "<group>";
+		};
 		D4CABF6E20B2BFCC006DC66F = {
 			isa = PBXGroup;
 			children = (
@@ -134,7 +146,7 @@
 		D4CABF9020B2C020006DC66F /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				D4CABF9220B2C020006DC66F /* Agent */,
+				A87536FE20B2FBC90002A468 /* Agent */,
 				D4CABF9320B2C020006DC66F /* Request */,
 				D4CABF9120B2C020006DC66F /* Response */,
 			);
@@ -148,13 +160,6 @@
 				D4CABF9520B2C086006DC66F /* FYResponse.m */,
 			);
 			path = Response;
-			sourceTree = "<group>";
-		};
-		D4CABF9220B2C020006DC66F /* Agent */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Agent;
 			sourceTree = "<group>";
 		};
 		D4CABF9320B2C020006DC66F /* Request */ = {
@@ -306,6 +311,7 @@
 				D4CABF9920B2C2F3006DC66F /* FYRequestBuilder.m in Sources */,
 				D4CABFC420B2C408006DC66F /* AFNetworkActivityIndicatorManager.m in Sources */,
 				D4CABFCC20B2C408006DC66F /* AFHTTPSessionManager.m in Sources */,
+				A875370120B2FBEA0002A468 /* FYNetworkAgent.m in Sources */,
 				D4CABFCE20B2C408006DC66F /* AFURLRequestSerialization.m in Sources */,
 				D4CABF8A20B2BFCC006DC66F /* main.m in Sources */,
 				D4CABFC620B2C408006DC66F /* UIButton+AFNetworking.m in Sources */,

@@ -39,7 +39,7 @@
     return self;
 }
 
-- (NSURLRequest *)buildRequetWithHTTPMethod:(FYRequestMethod)method URLString:(NSString *)URLString requestSerializerType:(FYRequestSerializerType)serializerType parameters:(id)parameters headers:(NSDictionary *)headers {
+- (NSURLRequest *)buildRequetWithHTTPMethod:(FYRequestMethod)method URLString:(NSString *)URLString requestSerializerType:(FYRequestSerializerType)serializerType parameters:(id)parameters constructingBodyBlock:(AFConstructingBlock)block headers:(NSDictionary *)headers {
     AFHTTPRequestSerializer *requestSerializer = nil;
     if (serializerType == FYRequestSerializerTypeHTTP) {
         requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -47,14 +47,25 @@
         requestSerializer = [AFJSONRequestSerializer serializer];
     }
     NSDictionary<NSString *, NSString *> *globalHeaders = [FYRequestBuilder shareBuilder].globalHeaders;
+    
     // configure request header
     NSMutableDictionary *headerFieldValueDictionary = [NSMutableDictionary dictionaryWithDictionary:globalHeaders];
     [headerFieldValueDictionary addEntriesFromDictionary:headers];
+    if (headerFieldValueDictionary.allKeys.count != 0) {
+        for (NSString *httpHeaderField in headerFieldValueDictionary.allKeys) {
+            NSString *value = headerFieldValueDictionary[httpHeaderField];
+            [requestSerializer setValue:value forHTTPHeaderField:httpHeaderField];
+        }
+    }
     
     // return NSURLRequest
     switch (method) {
         case FYRequestMethodPOST:
-            return nil;
+            if (block) {
+                return  [requestSerializer multipartFormRequestWithMethod:@"POST" URLString:URLString parameters:parameters constructingBodyWithBlock:block error:nil];
+            } else {
+                return [requestSerializer requestWithMethod:@"POST" URLString:URLString parameters:parameters error:nil];
+            }
         case FYRequestMethodGET:
             return [requestSerializer requestWithMethod:@"GET" URLString:URLString parameters:parameters error:nil];
         case FYRequestMethodHEAD:
