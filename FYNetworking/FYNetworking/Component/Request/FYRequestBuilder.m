@@ -39,7 +39,7 @@
     return self;
 }
 
-- (NSURLRequest *)buildRequetWithHTTPMethod:(FYRequestMethod)method URLString:(NSString *)URLString requestSerializerType:(FYRequestSerializerType)serializerType parameters:(id)parameters constructingBodyBlock:(AFConstructingBlock)block headers:(NSDictionary *)headers {
+- (NSURLRequest *)buildRequetWithHTTPMethod:(FYRequestMethod)method URLString:(NSString *)URLString requestSerializerType:(FYRequestSerializerType)serializerType parameters:(id)parameters constructingBodyBlock:(AFConstructingBlock)block headers:(NSDictionary *)headers error:(NSError *__autoreleasing  _Nullable *)error{
     AFHTTPRequestSerializer *requestSerializer = nil;
     if (serializerType == FYRequestSerializerTypeHTTP) {
         requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -62,20 +62,20 @@
     switch (method) {
         case FYRequestMethodPOST:
             if (block) {
-                return  [requestSerializer multipartFormRequestWithMethod:@"POST" URLString:URLString parameters:parameters constructingBodyWithBlock:block error:nil];
+                return  [requestSerializer multipartFormRequestWithMethod:@"POST" URLString:URLString parameters:parameters constructingBodyWithBlock:block error:error];
             } else {
-                return [requestSerializer requestWithMethod:@"POST" URLString:URLString parameters:parameters error:nil];
+                return [requestSerializer requestWithMethod:@"POST" URLString:URLString parameters:parameters error:error];
             }
         case FYRequestMethodGET:
-            return [requestSerializer requestWithMethod:@"GET" URLString:URLString parameters:parameters error:nil];
+            return [requestSerializer requestWithMethod:@"GET" URLString:URLString parameters:parameters error:error];
         case FYRequestMethodHEAD:
-            return [requestSerializer requestWithMethod:@"HEAD" URLString:URLString parameters:parameters error:nil];
+            return [requestSerializer requestWithMethod:@"HEAD" URLString:URLString parameters:parameters error:error];
         case FYRequestMethodPUT:
-            return [requestSerializer requestWithMethod:@"PUT" URLString:URLString parameters:parameters error:nil];
+            return [requestSerializer requestWithMethod:@"PUT" URLString:URLString parameters:parameters error:error];
         case FYRequestMethodDELETE:
-            return [requestSerializer requestWithMethod:@"DELETE" URLString:URLString parameters:parameters error:nil];
+            return [requestSerializer requestWithMethod:@"DELETE" URLString:URLString parameters:parameters error:error];
             case FYRequestMethodPATCH:
-            return [requestSerializer requestWithMethod:@"PATCH" URLString:URLString parameters:parameters error:nil];
+            return [requestSerializer requestWithMethod:@"PATCH" URLString:URLString parameters:parameters error:error];
     }
 }
 

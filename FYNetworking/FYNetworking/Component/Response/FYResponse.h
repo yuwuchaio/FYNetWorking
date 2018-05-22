@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly, nullable) NSError *error;
 
 // initialize
-- (instancetype)initWithResponseData:(NSData *)responseData requestTask:(NSURLSessionTask *)requestTask error:(NSError *)error;
+- (instancetype)initWithResponseData:(nullable NSData *)responseData requestTask:(NSURLSessionTask *)requestTask error:(nullable NSError *)error;
 
 @end
 NS_ASSUME_NONNULL_END

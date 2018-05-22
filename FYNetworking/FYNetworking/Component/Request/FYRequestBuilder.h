@@ -43,6 +43,6 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
 @property (nonatomic, strong) NSMutableDictionary<NSString *,NSString *> *globalHeaders;
 
 // initializer
-- (NSURLRequest *)buildRequetWithHTTPMethod:(FYRequestMethod)method URLString:(NSString *)URLString requestSerializerType:(FYRequestSerializerType)serializerType parameters:(id)parameters constructingBodyBlock:(AFConstructingBlock)blcok  headers:(NSDictionary *)headers;
+- (NSURLRequest *)buildRequetWithHTTPMethod:(FYRequestMethod)method URLString:(NSString *)URLString requestSerializerType:(FYRequestSerializerType)serializerType parameters:(id)parameters constructingBodyBlock:(AFConstructingBlock)blcok  headers:(NSDictionary *)headers error:(NSError * _Nullable __autoreleasing *)error;
 
 @end
