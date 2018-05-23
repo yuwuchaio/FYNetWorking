@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A875370120B2FBEA0002A468 /* FYNetworkAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = A875370020B2FBEA0002A468 /* FYNetworkAgent.m */; };
+		D405FF2620B5555B0084D9BC /* FYNetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = D405FF2520B5555B0084D9BC /* FYNetworkConfig.m */; };
 		D4CABF7C20B2BFCC006DC66F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4CABF7B20B2BFCC006DC66F /* AppDelegate.m */; };
 		D4CABF7F20B2BFCC006DC66F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4CABF7E20B2BFCC006DC66F /* ViewController.m */; };
 		D4CABF8220B2BFCC006DC66F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4CABF8020B2BFCC006DC66F /* Main.storyboard */; };
@@ -38,6 +39,8 @@
 /* Begin PBXFileReference section */
 		A87536FF20B2FBEA0002A468 /* FYNetworkAgent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYNetworkAgent.h; sourceTree = "<group>"; };
 		A875370020B2FBEA0002A468 /* FYNetworkAgent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYNetworkAgent.m; sourceTree = "<group>"; };
+		D405FF2420B5555B0084D9BC /* FYNetworkConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FYNetworkConfig.h; sourceTree = "<group>"; };
+		D405FF2520B5555B0084D9BC /* FYNetworkConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FYNetworkConfig.m; sourceTree = "<group>"; };
 		D4CABF7720B2BFCC006DC66F /* FYNetworking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FYNetworking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4CABF7A20B2BFCC006DC66F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D4CABF7B20B2BFCC006DC66F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -109,6 +112,15 @@
 			path = Agent;
 			sourceTree = "<group>";
 		};
+		D405FF2320B5555B0084D9BC /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				D405FF2420B5555B0084D9BC /* FYNetworkConfig.h */,
+				D405FF2520B5555B0084D9BC /* FYNetworkConfig.m */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		D4CABF6E20B2BFCC006DC66F = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +158,7 @@
 		D4CABF9020B2C020006DC66F /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				D405FF2320B5555B0084D9BC /* Config */,
 				A87536FE20B2FBC90002A468 /* Agent */,
 				D4CABF9320B2C020006DC66F /* Request */,
 				D4CABF9120B2C020006DC66F /* Response */,
@@ -306,6 +319,7 @@
 				D4CABFC320B2C408006DC66F /* UIRefreshControl+AFNetworking.m in Sources */,
 				D4CABF9620B2C086006DC66F /* FYResponse.m in Sources */,
 				D4CABFC720B2C408006DC66F /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				D405FF2620B5555B0084D9BC /* FYNetworkConfig.m in Sources */,
 				D4CABFCF20B2C408006DC66F /* AFNetworkReachabilityManager.m in Sources */,
 				D4CABFCB20B2C408006DC66F /* AFURLResponseSerialization.m in Sources */,
 				D4CABF9920B2C2F3006DC66F /* FYRequestBuilder.m in Sources */,
