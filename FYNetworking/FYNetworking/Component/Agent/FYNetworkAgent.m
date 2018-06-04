@@ -9,6 +9,7 @@
 #import "FYNetworkAgent.h"
 #import "FYRequestBuilder.h"
 #import "FYResponse.h"
+#import "FYNetworkConfig.h"
 
 #import <pthread/pthread.h>
 #if __has_include(<AFNetworking/AFNetworking.h>)
@@ -44,7 +45,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        _manager = [[AFHTTPSessionManager alloc] init];
+        _manager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:[FYNetworkConfig sharedConfig].sessionConfiguration];
         _manager.responseSerializer = [AFHTTPResponseSerializer serializer];
         _taskCompletionMapper = [NSMutableDictionary dictionary];
         
@@ -66,8 +67,7 @@
                   requestSerializerType:(FYRequestSerializerType)serializerType
                   constructingBodyBlock:(AFConstructingBlock)block
                                   error:(NSError *__autoreleasing  *)error {
-    NSURLRequest *request = [[FYRequestBuilder shareBuilder] buildRequetWithHTTPMethod:method URLString:URLString requestSerializerType:serializerType parameters:parameters constructingBodyBlock:block headers:headers error:error];
-    return  request;
+    return [[FYRequestBuilder shareBuilder] buildRequetWithHTTPMethod:method URLString:URLString requestSerializerType:serializerType parameters:parameters constructingBodyBlock:block headers:headers error:error];
 }
 
 - (void)GET:(NSString *)URLString parameters:(id)parameters requestCompletionHander:(FYRequestCompletionHander)completion {
@@ -75,9 +75,10 @@
     NSError * __autoreleasing requestSerializationError = nil;
     
     NSURLRequest *request = [self requestWithHTTPMethod:FYRequestMethodGET URLString:URLString parameters:parameters headers:nil requestSerializerType:FYRequestSerializerTypeHTTP constructingBodyBlock:nil error:&requestSerializationError];
-    // request serialize error
+    // request serialize error       
     if (requestSerializationError) {
-        [self requestDidFailWithDataTask:nil error:requestSerializationError];
+        FYResponse *response = [[FYResponse alloc] initWithResponseData:nil requestTask:nil error:requestSerializationError];
+        completion(response);
         return;
     }
     __block NSURLSessionDataTask *dataTask = nil;
@@ -86,6 +87,7 @@
     }];
     Lock();
     self.taskCompletionMapper[@(dataTask.taskIdentifier)] = completion;
+    NSLog(@"Request count size = %zd", [self.taskCompletionMapper count]);
     Unlock();
     [dataTask resume];
     

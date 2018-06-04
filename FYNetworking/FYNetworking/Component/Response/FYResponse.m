@@ -25,7 +25,9 @@
         self.requestTask = requestTask;
         self.responseData = responseData;
         self.responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-        self.responseJSONObject = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:NULL];
+        if (responseData) {
+            self.responseJSONObject = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:NULL];
+        }
     }
     return self;
 }

@@ -7,6 +7,10 @@
 //
 
 #import "ViewController.h"
+#import "FYNetworkAgent.h"
+#import "FYNetworkConfig.h"
+#import "FYRequestBuilder.h"
+#import "FYResponse.h"
 
 @interface ViewController ()
 @property (nonatomic, strong) NSMutableDictionary *dict;
@@ -19,14 +23,16 @@
     self.dict = [NSMutableDictionary dictionaryWithCapacity:2];
     self.dict[@"1"] = nil;
     
+    [FYNetworkConfig sharedConfig].baseURL = @"https://test.88gongxiang.com/";
+    [FYRequestBuilder shareBuilder].globalHeaders = @{ @"x-app-version" : @"1.9.0",
+                                                       @"x-auth-token" : @"60FAB07AEB68598C46F7E93A545ED3A9",
+                                                       }.mutableCopy;
     NSLog(@"%@",self.dict[@"1"]);
     // Do any additional setup after loading the view, typically from a nib.
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+     
 }
 
 

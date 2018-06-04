@@ -7,6 +7,7 @@
 //
 
 #import "FYRequestBuilder.h"
+#import "FYNetworkConfig.h"
 #import "AFNetworking.h"
 #if __has_include(<AFNetworking/AFURLRequestSerialization.h>)
 #import <AFNetworking/AFURLRequestSerialization.h>
@@ -35,6 +36,7 @@
     if (self) {
         _httpRequestSerializer = [AFHTTPRequestSerializer serializer];
         _jsonRequestSerializer = [AFJSONRequestSerializer serializer];
+        _globalHeaders = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -57,7 +59,7 @@
             [requestSerializer setValue:value forHTTPHeaderField:httpHeaderField];
         }
     }
-    
+    URLString = [self getCompleteURL:URLString];
     // return NSURLRequest
     switch (method) {
         case FYRequestMethodPOST:
@@ -79,4 +81,21 @@
     }
 }
 
+// get Complete URL
+- (NSString *)getCompleteURL:(NSString *)detailUrl{
+    
+    NSURL *temp = [NSURL URLWithString:detailUrl];
+    // If detailUrl is valid URL
+    if (temp && temp.host && temp.scheme) {
+        return detailUrl;
+    }
+    NSString *baseUrl = [[FYNetworkConfig sharedConfig] baseURL];
+    // URL slash compability
+    NSURL *url = [NSURL URLWithString:baseUrl];
+    
+    if (baseUrl.length > 0 && ![baseUrl hasSuffix:@"/"]) {
+        url = [url URLByAppendingPathComponent:@""];
+    }
+    return [NSURL URLWithString:detailUrl relativeToURL:url].absoluteString;
+}
 @end
